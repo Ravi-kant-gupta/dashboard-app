@@ -30,11 +30,13 @@ db.connect(err => {
 });
 
 
-let menuId = 0
+let menuId = 1
 app.get('/api/dashboard', (req, res) => {
   db.query('SELECT * FROM dashboard_tbl', (err, results) => {
     if (err) throw err;
-    menuId = results.length;
+    if(results.length !== 0) {
+      menuId = results[results.length - 1]['menuid'] + 1;
+    }
     console.log(menuId)
     res.json(results);
   });
@@ -43,10 +45,10 @@ app.get('/api/dashboard', (req, res) => {
 app.post('/api/dashboard', (req, res) => {
   const { menu_heading, menu_name, menu_under, enable_yn } = req.body;
   db.query('INSERT INTO dashboard_tbl (menuid, menu_heading, menu_name, menu_under, enable_yn) VALUES (?, ?, ?, ?, ?)',
-    [menuId+1, menu_heading, menu_name, menu_under, enable_yn], (err, results) => {
+    [menuId, menu_heading, menu_name, menu_under, enable_yn], (err, results) => {
       if (err) throw err;
       console.log(results)
-      res.json({ id: menuId+1 });
+      res.json({ id: menuId });
     });
 });
 app.put('/api/dashboard/:id', (req, res) => {

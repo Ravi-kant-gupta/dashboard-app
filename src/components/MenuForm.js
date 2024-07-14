@@ -34,15 +34,26 @@ const MenuForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const method = id ? 'put' : 'post';
-    const url = id ? `http://localhost:3307/api/dashboard/${id}` : 'http://localhost:3307/api/dashboard';
-    axios[method](url, menu)
+   if(menu.menu_heading.trim() === ""){
+      alert("Please Enter Menu Heading");
+    }
+    else if(menu.menu_name.trim() === ""){
+      alert("Please Enter Menu Name");
+    }else if(menu.menu_under.trim() === ""){
+      alert("Please Enter Menu Under");
+    }else{
+      const method = id ? 'put' : 'post';
+      const url = id ? `http://localhost:3307/api/dashboard/${id}` : 'http://localhost:3307/api/dashboard';
+      axios[method](url, menu)
       .then(() => {
         navigate('/');
       })
       .catch(error => {
         console.error('There was an error submitting the form!', error);
       });
+    }
+    console.log(menu.menu_heading);
+    
   };
 
   return (
