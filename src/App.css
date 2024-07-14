@@ -58,16 +58,7 @@ nav ul li:hover {
   text-decoration: underline;
 }
 
-/* .disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
 
-.list-group-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-} */
 
 .disabled {
   opacity: 0.5;
