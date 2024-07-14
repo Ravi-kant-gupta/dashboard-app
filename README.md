@@ -6,6 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `node server.js`
+
+Runs the backend server which is present in backend folder.\
+Open [http://localhost:3307](http://localhost:3307) to view it in your browser.
+
+
 ### `npm start`
 
 Runs the app in the development mode.\
